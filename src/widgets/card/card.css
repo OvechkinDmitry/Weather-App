@@ -1,0 +1,16 @@
+.card-container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width:300px;
+    height: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.card-container:nth-child(2n){
+    margin-right: 0;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import './main.css'
+import {Card} from "../../widgets/card/card";
 
 export const Main = () => {
     return (
@@ -10,8 +11,10 @@ export const Main = () => {
                     <input className="input" type="text" placeholder="долгота"/>
                     <button className="button" type="submit">Submit</button>
             </div>
-
         </div>
+         <div className="cards">
+             <Card/>
+         </div>
         </div>
     );
 };
