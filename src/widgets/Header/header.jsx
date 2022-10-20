@@ -3,7 +3,9 @@ import './header.css'
 export const Header = () =>  {
         return (
             <div className="header">
-              Weather App
+                 <a>Weather App</a>
+                 <a>Home</a>
+                 <a>Map</a>
             </div>
         );
 }
