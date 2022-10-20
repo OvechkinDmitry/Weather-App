@@ -1,0 +1,10 @@
+.map{
+    font-family: Arial;
+    flex: 1 1 auto;
+    background: #efabef;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
