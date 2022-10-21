@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './main.css'
 import {Card} from "../../widgets/card/card";
-
+import {Search} from "../../widgets/search/search";
+// units=metric для отображения
 export const Main = () => {
-    // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=21686de17220a1b3bc4c70e1e6d64a12`;
     const [memory,setMemory] = useState({})
     const [lat,setLat] = useState("")
     const [lon,setLon] = useState("")
@@ -20,22 +20,9 @@ export const Main = () => {
         <div className="main">
             <div className="main__form">
                     <div className="form"><div className="form__title">Введите координаты</div>
-                    <input className="input"
-                           type="text"
-                           placeholder="Широта"
-                           value={lat}
-                           onChange={event => {setLat(event.target.value)}}
-                    />
-                    <input className="input"
-                           type="text"
-                           placeholder="Долгота"
-                           value={lon}
-                           onChange={event => {setLon(event.target.value)}}
-                    />
-                    <button className="button"
-                            type="submit"
-                            onClick={searchParams}
-                    >Submit</button>
+                    <Search cord={lat} setCord={setLat} placeHolder="Широта"/>
+                    <Search cord={lon} setCord={setLon} placeHolder="Долгота"/>
+                    <button className="button" type="submit" onClick={searchParams}>Submit</button>
             </div>
         </div>
          <div className="cards">
