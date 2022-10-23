@@ -1,0 +1,23 @@
+.button{
+    cursor: pointer;
+    color: white;
+    font-weight: 800;
+    border: none;
+    outline: none;
+    background: rgba(252,252,252, 0.3);
+    padding: 5px;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.cards{
+    width: 100%;
+    display: flex;
+    max-width: 700px;
+    margin: 0px auto;
+    flex-wrap: wrap;
+    /*flex-flow: row nowrap;*/
+    align-items: center;
+    row-gap: 20px;
+    justify-content: space-between;
+}
