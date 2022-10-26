@@ -1,41 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {useDispatch} from "react-redux";
 import "./card.css"
+import {deleteCard} from "../../state/cardsSlice";
 
-export class Card extends Component {
-     constructor() {
-         super();
-         this.state = {
-             deleted : false,
-         }
-     }
-
-    deleteCard = () =>{
-      this.setState(({deleted}) => {
-          return {
-              deleted: !deleted,
-          }
-      })
-    }
-
-    render(){
-        const {title, deg} = this.props;
-        return (
-            this.state.deleted ? null :
-            <div className="card-container">
-                       <div className="card-title">{title}</div>
-                       <div className="card-temperature">{deg}°C</div>
-                     <button onClick={this.deleteCard} type="submit">DELETE</button>
+export const Card = ({title, deg, id}) => {
+    let dispatch = useDispatch();
+    return (<div className="card-container">
+            <div className="card-title">{title} страна</div>
+            <div className="card-info">
+                <div className="card-info__column">
+                    <div className="card-temperatur">Температура: {deg}°C</div>
+                    <div className="card-feels-like">Ощущается как: 110°C</div>
+                    <div className="card-wind">Скорость ветра: m/s</div>
+                </div>
+                <div className="card-info__column">
+                    <div className="card-visibility">Видимость: 1000м</div>
+                    <div className="card-weather-main">Сейчас: солнечно</div>
+                    <div className="card-cloudiness">Облачность: %</div>
+                </div>
             </div>
-        )
-    }
+            {/*<div className="card-temperature">{deg}°C</div>*/}
+            <button onClick={() => dispatch(deleteCard({id}))} type="submit">DELETE</button>
+        </div>
+    )
 }
 
-
-// export const Card = (props) => (
-//     <div className="card-container">
-//           <div className="card-title">{props.title}</div>
-//           <div className="card-temperature">{props.deg}°C</div>
-//         <button type="submit">DELETE</button>
-//     </div>
-// );
 
