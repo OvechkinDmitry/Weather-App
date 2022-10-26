@@ -5,15 +5,14 @@ import {useSelector} from "react-redux";
 export const Cards = () =>{
     const cardsSelector = useSelector(state => state.cards.cards)
     const cards = cardsSelector.map((item)=>{
-        const {title, deg, id, ...itemProps} = item;
+        const {title, deg, id,country, feelsLike, humidity, weatherDescription, windSpeed,visibility, imgUrl} = item;
         return (
-            <Card key={id} id={id} title={title} deg={deg}/>
+            <Card key={id} id={id} title={title} deg={deg} visibility={visibility}
+                  windSpeed={windSpeed} feelsLike={feelsLike}
+                  humidity={humidity} weatherDescription={weatherDescription} country={country} imgUrl={imgUrl}/>
         )
     })
     return (<div className="cards">
-        {/*<Card title={memory?.name} deg={memory.main?.temp.toFixed()}/>*/}
-        <Card title={"Москва"} deg={10}/>
-        <Card title={"Москва"} deg={10}/>
         {cards}
     </div>)
 }

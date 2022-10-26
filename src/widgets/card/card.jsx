@@ -3,23 +3,19 @@ import {useDispatch} from "react-redux";
 import "./card.css"
 import {deleteCard} from "../../state/cardsSlice";
 
-export const Card = ({title, deg, id}) => {
+export const Card = ({title, deg, id, country, feelsLike, humidity, weatherDescription, windSpeed,visibility,imgUrl}) => {
     let dispatch = useDispatch();
     return (<div className="card-container">
-            <div className="card-title">{title} страна</div>
+            <div className="card-image"><img src={imgUrl} alt="weather"/></div>
+            <div className="card-title">{title} {country}</div>
             <div className="card-info">
-                <div className="card-info__column">
-                    <div className="card-temperatur">Температура: {deg}°C</div>
-                    <div className="card-feels-like">Ощущается как: 110°C</div>
-                    <div className="card-wind">Скорость ветра: m/s</div>
-                </div>
-                <div className="card-info__column">
-                    <div className="card-visibility">Видимость: 1000м</div>
-                    <div className="card-weather-main">Сейчас: солнечно</div>
-                    <div className="card-cloudiness">Облачность: %</div>
-                </div>
+                <div className="card-temperatur">Температура: {deg}°C</div>
+                <div className="card-feels-like">Ощущается как: {feelsLike}°C</div>
+                <div className="card-visibility">Видимость: {visibility}м</div>
+                <div className="card-wind">Скорость ветра: {windSpeed}m/s</div>
+                <div className="card-weather-main">Сейчас: {weatherDescription}</div>
+                <div className="card-cloudiness">Облачность: {humidity}%</div>
             </div>
-            {/*<div className="card-temperature">{deg}°C</div>*/}
             <button onClick={() => dispatch(deleteCard({id}))} type="submit">DELETE</button>
         </div>
     )

@@ -8,10 +8,17 @@ export const searchWetaher = createAsyncThunk(
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-        const {name, main} = data;
-        console.log(name)
+        const {name, main,visibility,weather,sys,wind} = data;
+        const country = sys?.country;
+        const weatherDescription = weather[0].description;
+        const imgUrl = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
+        console.log(imgUrl)
+        const feelsLike = main?.feels_like.toFixed();
+        const humidity = main?.humidity.toFixed();
+        const windSpeed = wind?.speed;
         const deg = main?.temp.toFixed();
-        dispatch(addCard({name,deg}))
+        console.log(name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed)
+        dispatch(addCard({name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed,imgUrl}))
     },
 )
 
@@ -27,6 +34,13 @@ const cardsSlice = createSlice({
                       id: new Date().toISOString(),
                       title : action.payload.name ? action.payload.name : "Unknown City" ,
                       deg : action.payload.deg,
+                      country : action.payload.country ? action.payload.country : "Unknown country" ,
+                      feelsLike : action.payload.feelsLike,
+                      humidity : action.payload.humidity,
+                      weatherDescription : action.payload.weatherDescription,
+                      visibility: action.payload.visibility,
+                      windSpeed: action.payload.windSpeed,
+                      imgUrl: action.payload.imgUrl,
                   })
           },
           deleteCard(state, action){
