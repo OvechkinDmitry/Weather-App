@@ -16,7 +16,7 @@ export const Card = ({title, deg, id, country, feelsLike, humidity, weatherDescr
                 <div className="card-weather-main">Сейчас: {weatherDescription}</div>
                 <div className="card-cloudiness">Облачность: {humidity}%</div>
             </div>
-            <button onClick={() => dispatch(deleteCard({id}))} type="submit">DELETE</button>
+            <button onClick={() => dispatch(deleteCard({id}))} type="submit">УДАЛИТЬ</button>
         </div>
     )
 }

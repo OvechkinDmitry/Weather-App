@@ -20,7 +20,7 @@ export const Main = () => {
                     <div className="form"><div className="form__title">Введите координаты</div>
                     <Search cord={lat} setCord={setLat} placeHolder="Широта"/>
                     <Search cord={lon} setCord={setLon} placeHolder="Долгота"/>
-                    <button className="button" type="submit" onClick={addItem}>Submit</button>
+                    <button className="button" type="submit" onClick={addItem}>Найти</button>
                     </div>
             </div>
             <Cards/>
