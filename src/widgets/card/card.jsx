@@ -4,6 +4,7 @@ import "./card.css"
 import {deleteCard} from "../../state/cardsSlice";
 
 export const Card = ({title, deg, id, country, feelsLike, humidity, weatherDescription, windSpeed,visibility,imgUrl}) => {
+
     let dispatch = useDispatch();
     return (<div className="card-container">
             <div className="card-image"><img src={imgUrl} alt="weather"/></div>

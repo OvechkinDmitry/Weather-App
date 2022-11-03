@@ -43,7 +43,10 @@
     border-radius: 10px;
     padding: 10px 20px;
 }
-
+.button:disabled{
+    background-color: red;
+    cursor: auto;
+}
 .cards{
     width: 100%;
     display: flex;
