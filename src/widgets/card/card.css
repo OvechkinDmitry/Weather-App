@@ -55,3 +55,11 @@ button{
     width:70px;
     height: 70px;
 }
+.card-body{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.card-body__map{
+    align-self: center;
+}

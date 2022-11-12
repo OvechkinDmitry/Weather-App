@@ -5,8 +5,10 @@ import {Cards} from "../../widgets/cards/cards";
 import {useDispatch} from "react-redux";
 import {searchWetaher} from '../../state/cardsSlice';
 const useValidation = (value, validations) =>{
-    let lonTest = /^(\s?)+(\-?([1]?[0-7]?[0-9](\.\d+)?|180((.[0]+)?)))$/g
-    let latTest = /^(\-?([0-8]?[0-9](\.\d+)?|90(.[0]+)?)\s?)$/g
+    // let lonTest = /^(\s?)+(\-?([1]?[0-7]?[0-9](\.\d+)?|180((.[0]+)?)))$/g
+    let lonTest = /^-?([0-9]{1,2}|1[0-7][0-9]|180)(\.[0-9]{1,10})?$/
+    // let latTest = /^(\-?([0-8]?[0-9](\.\d+)?|90(.[0]+)?)\s?)$/g
+    let latTest = /^-?([0-8]?[0-9]|90)(\.[0-9]{1,10})?$/
     const [emptyError, setEmptyError] = useState({isError : true, errorMessage : ""})
     const [wrongLongitude, setWrongLongitude] = useState({isError : false, errorMessage : ""})
     const [wrongLatitude, setWrongLatitude] = useState({isError : false, errorMessage : ""})
@@ -44,29 +46,17 @@ const useValidation = (value, validations) =>{
 }
 
 
-const useSearch = (initialValue, validations) =>{// todo написать обнуление поиска (функцию) после кнопки добавить
+const useSearch = (initialValue, validations) => {// todo написать обнуление поиска (функцию) после кнопки добавить
     const [val,setVal] = useState(initialValue)
     const [inputWrong, setInputWrong] = useState(false)
     const valid = useValidation(val, validations)
-    const onChange= (e) =>{
-        setVal(e.target.value)
-    }
-    const onBlur = (e) => {
-        setInputWrong(true)
-    }
+    const onChange= (e) => setVal(e.target.value)
+    const onBlur = (e) => setInputWrong(true)
     const resetInput = () => {
         setInputWrong(false)
         setVal("")
     }
-    return {
-        val,
-        onBlur,
-        onChange,
-        setVal,
-        ...valid,
-        inputWrong,
-        resetInput,
-    }
+    return {val, onBlur, onChange, setVal, ...valid, inputWrong, resetInput,}
 }
 export const Main = () => {
     let lt = useSearch("",{isEmpty: true, isWrongLatitude: true })

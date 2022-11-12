@@ -1,24 +1,22 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {getImgURL, getURL} from "./constants";
 export const searchWetaher = createAsyncThunk(
     'cards/searchWetaher',
       async function ({lat,lon},{rejectWithValue, dispatch}){
         console.log("работаю...")
-        let id = "21686de17220a1b3bc4c70e1e6d64a12";
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat.trim()}&lon=${lon.trim()}&units=metric&appid=${id}&lang=ru`;
+        const url = getURL(lat,lon);
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+        console.log(data)
         const {name, main,visibility,weather,sys,wind} = data;
         const country = sys?.country;
         const weatherDescription = weather[0].description;
-        const imgUrl = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
-        console.log(imgUrl)
+        const imgUrl = getImgURL(weather[0].icon)
         const feelsLike = main?.feels_like.toFixed();
         const humidity = main?.humidity.toFixed();
         const windSpeed = wind?.speed;
         const deg = main?.temp.toFixed();
-        console.log(name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed)
-        dispatch(addCard({name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed,imgUrl}))
+        dispatch(addCard({name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed,imgUrl,lat,lon}))
     },
 )
 
@@ -32,15 +30,17 @@ const cardsSlice = createSlice({
               state.cards.unshift(
                   {
                       id: new Date().toISOString(),
-                      title : action.payload.name ? action.payload.name : "Unknown City" ,
+                      title : action.payload.name ? action.payload.name : "Без имени" ,
                       deg : action.payload.deg,
-                      country : action.payload.country ? action.payload.country : "Unknown country" ,
+                      country : action.payload.country ? action.payload.country : "" ,
                       feelsLike : action.payload.feelsLike,
                       humidity : action.payload.humidity,
                       weatherDescription : action.payload.weatherDescription,
                       visibility: action.payload.visibility,
                       windSpeed: action.payload.windSpeed,
                       imgUrl: action.payload.imgUrl,
+                      lat: action.payload.lat,
+                      lon: action.payload.lon,
                   })
           },
           deleteCard(state, action){

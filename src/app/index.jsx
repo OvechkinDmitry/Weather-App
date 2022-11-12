@@ -1,6 +1,6 @@
 import React from "react";
 import './app.css'
-import {Header} from "../shared/Header/header";
+import {Header} from "../shared/header/header";
 import {Main} from "../pages/main/main";
 import {Map} from "../pages/map/map";
 import {Route, Routes} from "react-router-dom";
