@@ -12,7 +12,7 @@ export const Card = ({title, deg, id, country, feelsLike, humidity, weatherDescr
                     <div className="card-image"><img src={imgUrl} alt="weather"/></div>
                     <div className="card-title">{title} {country}</div>
                     <div className="card-info">
-                        <div className="card-temperatur">Температура: {deg}°C</div>
+                        <div className="card-temperature">Температура: {deg}°C</div>
                         <div className="card-feels-like">Ощущается как: {feelsLike}°C</div>
                         <div className="card-visibility">Видимость: {visibility}м</div>
                         <div className="card-wind">Скорость ветра: {windSpeed}m/s</div>
