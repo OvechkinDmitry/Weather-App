@@ -6,7 +6,7 @@
     border-bottom: 1px solid black;
     background-color: transparent;
     padding: 10px;
-    border-bottom: 2px white dashed;
+    border-bottom: 2px white solid;
 }
 ::placeholder{
     color: white;

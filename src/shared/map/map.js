@@ -1,17 +1,13 @@
 import React, {useState} from 'react';
 import {YMaps,Map,Placemark} from "react-yandex-maps";
 import './map.css'
+import {LoadingRing} from "../ui/loading-ring/loading-ring";
 
 export const CardMap = ({lat,lon}) => {
     const [isLoading,setIsLoading] = useState(true)
     return (
         <div className="card-body__map">
-            {isLoading &&  <div className="lds-ring">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>}
+            {isLoading && <LoadingRing/>}
             <YMaps>
                 <Map
                     onLoad={() => setIsLoading(false)}

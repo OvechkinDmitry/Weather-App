@@ -1,22 +1,28 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {getImgURL, getURL} from "./constants";
-export const searchWetaher = createAsyncThunk(
-    'cards/searchWetaher',
+export const searchWetaher = createAsyncThunk('cards/searchWetaher',
       async function ({lat,lon},{rejectWithValue, dispatch}){
-        console.log("работаю...")
-        const url = getURL(lat,lon);
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data)
-        const {name, main,visibility,weather,sys,wind} = data;
-        const country = sys?.country;
-        const weatherDescription = weather[0].description;
-        const imgUrl = getImgURL(weather[0].icon)
-        const feelsLike = main?.feels_like.toFixed();
-        const humidity = main?.humidity.toFixed();
-        const windSpeed = wind?.speed;
-        const deg = main?.temp.toFixed();
-        dispatch(addCard({name,deg,visibility,feelsLike,humidity,weatherDescription,country,windSpeed,imgUrl,lat,lon}))
+          try{
+              const response = await fetch(getURL(lat, lon));
+              if(!response.ok)
+                  throw new Error("SERVER ERROR");
+              const data = await response.json();
+              const {name, main, visibility, weather, sys, wind} = data;
+              const country = sys?.country;
+              const weatherDescription = weather[0].description;
+              const imgUrl = getImgURL(weather[0].icon)
+              const feelsLike = main?.feels_like.toFixed();
+              const humidity = main?.humidity.toFixed();
+              const windSpeed = wind?.speed;
+              const deg = main?.temp.toFixed();
+              dispatch(addCard({
+                  name, deg, visibility, feelsLike, humidity
+                  , weatherDescription, country, windSpeed, imgUrl, lat, lon
+              }))
+          }
+          catch(error){
+              return rejectWithValue(error.message)
+          }
     },
 )
 
@@ -24,6 +30,8 @@ const cardsSlice = createSlice({
     name: "cards",
     initialState:{
         cards:[],
+        status: null,
+        error: null,
     },
     reducers:{//набор методов которые я захочу использовать
               addCard(state, action){//здесь не нужно переписывать стэйт целиком
@@ -49,9 +57,18 @@ const cardsSlice = createSlice({
           },
     },
     extraReducers:{
-        [searchWetaher.pending] : (state, action) => {},
-        [searchWetaher.fulfilled] : (state, action) => {},
-        [searchWetaher.rejected] : (state, action) => {},
+        [searchWetaher.pending] : (state, action) => {
+            state.status = "loading"
+            state.error = null
+        },
+        [searchWetaher.fulfilled] : (state, action) => {
+            state.status = "resolved"
+            state.error = action.payload
+        },
+        [searchWetaher.rejected] : (state, action) => {
+            state.status = "rejected"
+            state.error = action.payload
+        },
     }
 })
 
