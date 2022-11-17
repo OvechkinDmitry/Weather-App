@@ -17,7 +17,7 @@ export const App = () =>{
             <Modal active={modalActive} setActive={setModalActive}>
                 <div className='modal__title'>Добро пожаловать в Weather App!</div>
                 <div className='modal__subtitle'>В приложении используется сервис Open Weather API,
-                к сожалению, для его использования придется подключиться к VPN приношу свои извенения</div>
+                к сожалению, для его использования придется подключиться к VPN приношу свои извинения</div>
             </Modal>
         </div>
     )

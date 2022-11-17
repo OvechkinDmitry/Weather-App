@@ -46,6 +46,3 @@ export const useSearch = (initialValue, validations) => {// todo написат�
     return {val, onBlur, onChange, setVal, ...valid, inputWrong, resetInput,}
 }
 
-const getErrorMessage = (conditions, message) =>{
-
-}
