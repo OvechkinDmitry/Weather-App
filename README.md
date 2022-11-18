@@ -3,7 +3,7 @@
 
 <h1 align="center">Deploy</h1>
 
-<h3 align="center">https://weather-pkhriy7xr-ovechkindmitry.vercel.app/</h2>
+<h3 align="center">https://weather-ojm1u8m5w-ovechkindmitry.vercel.app/ </h2>
 
 <br/>
 
