@@ -4,7 +4,9 @@
 
 <h2 align="center">Deploy</h2>
 
-<div align="center">https://weather-pkhriy7xr-ovechkindmitry.vercel.app/</div>
+<h3 align="center">https://weather-pkhriy7xr-ovechkindmitry.vercel.app/</h2>
+
+<br/>
 
 ![weather app cover](/markdown-images/page-result.jpg)
 
