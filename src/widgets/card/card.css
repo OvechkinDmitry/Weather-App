@@ -55,7 +55,16 @@ button{
 .card-body{
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     justify-content: space-between;
+}
+@media (max-width: 797px) {
+    .card-body{
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    
 }
 .card-body__map{
     align-self: center;
