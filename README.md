@@ -1,5 +1,7 @@
-<h1 align="center">⛅ Weather App</h1> 
+<h1 align="center">⛅ Weather App</h1>
+
 <hr/>
+
 <h2 align="center">Deploy</h2>
 
 <div align="center">https://weather-pkhriy7xr-ovechkindmitry.vercel.app/</div>
